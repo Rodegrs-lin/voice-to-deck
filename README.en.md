@@ -49,6 +49,12 @@ Then just say: *"Use voice-to-deck, turn this narration into a dynamic deck. MP3
 - 23 bundled themes, each a `theme.json` + `tokens.css`
 - A fixed recording URL and a one-click launcher
 
+## What it looks like when it works
+
+Elements land **in order**, not as one block fade. On this page the narration says "it hit three things", so three photos arrive one after another — the number ③ is already on screen while the third photo is still a dashed placeholder:
+
+![Three photos landing in narration order, the third still a placeholder](docs/demo-whyhot.gif)
+
 ## Three gates before delivery
 
 ```bash
