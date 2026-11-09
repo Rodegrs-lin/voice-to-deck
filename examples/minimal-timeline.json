@@ -1,0 +1,47 @@
+{
+  "audioDuration": 24.5,
+  "clock": "mp3",
+  "contentDensity": "concise",
+  "pages": [
+    {
+      "id": "why",
+      "pageNumber": 1,
+      "section": "开场",
+      "subsection": "问题",
+      "start": 0,
+      "end": 11.2,
+      "cueStart": 1,
+      "cueEnd": 3,
+      "narration": "多数人做口播视频，卡在第一步：画面跟不上嘴。这里放的是这一页覆盖的连续口播原文。",
+      "screen": "画面跟不上嘴，是第一步就卡住的地方",
+      "visual": "左边一句口播，右边一条音轨，音轨上一个游标停在句首",
+      "transition": "cut",
+      "priority": "normal",
+      "beats": [
+        { "id": "why-b1", "start": 0, "end": 3.4, "cueStart": 1, "cueEnd": 1, "action": "reveal-title" },
+        { "id": "why-b2", "start": 3.4, "end": 7.1, "cueStart": 2, "cueEnd": 2, "action": "draw-waveform" },
+        { "id": "why-b3", "start": 7.1, "end": 11.2, "cueStart": 3, "cueEnd": 3, "action": "count-to-40ms" }
+      ]
+    },
+    {
+      "id": "how",
+      "pageNumber": 2,
+      "section": "做法",
+      "subsection": "时钟等于声源",
+      "start": 11.2,
+      "end": 24.5,
+      "cueStart": 4,
+      "cueEnd": 6,
+      "narration": "办法只有一条：谁在出声，就让谁管时间。这是第二页覆盖的口播原文。",
+      "screen": "时钟必须等于声源",
+      "visual": "两个方块，一个标 MP3、一个标 Video，中间一根线连到同一个钟面",
+      "transition": "cut",
+      "priority": "high",
+      "beats": [
+        { "id": "how-b1", "start": 11.2, "end": 15.0, "cueStart": 4, "cueEnd": 4, "action": "reveal-title" },
+        { "id": "how-b2", "start": 15.0, "end": 19.6, "cueStart": 5, "cueEnd": 5, "action": "connect-clock" },
+        { "id": "how-b3", "start": 19.6, "end": 24.5, "cueStart": 6, "cueEnd": 6, "action": "lock-bias-010" }
+      ]
+    }
+  ]
+}

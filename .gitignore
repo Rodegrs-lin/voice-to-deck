@@ -1,0 +1,24 @@
+# 依赖与构建
+node_modules/
+dist/
+build/
+
+# 录制与截图的过程产物
+_rec/
+review-frames/
+*.tmp
+
+# 浏览器 profile（audit-motion 会跳过隐藏目录，但别提交）
+.edge-profile/
+.vite/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# 日志
+*.log
+npm-debug.log*

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Video 演示 · 官方主题总表（23）</title>
+<style>
+  :root{ --bg:#f6f7f9; --card:#fff; --ink:#1f2329; --muted:#6b7280; --line:#e6e8eb; --chip:#eef1f5; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  header{padding:28px 24px 8px;max-width:1180px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 16px}
+  .bar{max-width:1180px;margin:0 auto;padding:0 24px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  #q{width:280px;max-width:60vw;padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:14px;background:#fff}
+  .count{color:var(--muted);font-size:13px}
+  main{max-width:1180px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .screen{padding:14px;min-height:150px;display:flex;align-items:center;justify-content:center}
+  .panel{width:100%;border-radius:10px;padding:14px 16px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+  .t{font-size:15px;font-weight:700;margin-bottom:6px}
+  .b{font-size:12px;opacity:.78;margin-bottom:12px}
+  .btn{display:inline-block;font-size:12px;font-weight:600;padding:6px 14px;border-radius:999px}
+  .meta{padding:14px 16px 16px;display:flex;flex-direction:column;gap:9px}
+  .ttl{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .ttl .zh{font-size:16px;font-weight:700}
+  .ttl .en{font-size:12px;color:var(--muted)}
+  .ttl .id{font-size:11px;color:#9aa1ab;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-left:auto}
+  .desc{font-size:13px;color:#374151}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{background:var(--chip);color:#3b4252;font-size:11px;padding:3px 9px;border-radius:999px}
+  .lbl{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+  .dl{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+  .dl a{font-size:12px;text-decoration:none;padding:7px 12px;border-radius:8px;border:1px solid var(--line);color:#2756c9;background:#fafbff}
+  .dl a.primary{background:#2756c9;color:#fff;border-color:#2756c9}
+  .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Web Video 演示 · 官方主题总表</h1>
+  <p class="sub">共 <b id="total">0</b> 个官方主题（来源：ConardLi/garden-skills · web-video-presentation）。每张卡片用主题自带的 preview 配色实时渲染预览，并附官网下载链接。</p>
+</header>
+<div class="bar">
+  <input id="q" placeholder="搜索主题名 / 中文名 / 气质 / 场景…" />
+  <span class="count" id="shown"></span>
+</div>
+<main id="grid"></main>
+
+<script>
+const THEMES = [{"id": "bauhaus-bold", "name": "Bauhaus Bold", "nameZh": "包豪斯", "descriptionZh": "净色底 + 主色蓝强调色 + Archivo Black 黑体. 包豪斯 / 布鲁塔利风格, 适合观点鲜明的演讲与产品发布.", "mood": ["light", "modernist", "bauhaus", "geometric", "bold", "manifesto"], "bestFor": ["产品发布", "观点宣言", "设计演讲", "品牌主张"], "shell": "#f0eee8", "surface": "#fafaf7", "text": "#0a0a0a", "accent": "#1a4cdb"}, {"id": "blueprint", "name": "Blueprint", "nameZh": "蓝图", "descriptionZh": "深藏青底 + 青色强调色 + IBM Plex Mono. 工程蓝图 / 工业图纸气质, 适合系统架构与技术拆解.", "mood": ["dark", "engineering", "blueprint", "industrial", "technical", "navy"], "bestFor": ["技术架构", "系统拆解", "技术评测", "工程教程", "API / SDK 介绍"], "shell": "#0a121f", "surface": "#0e1830", "text": "#e6f0ff", "accent": "#5fc7e8"}, {"id": "bold-signal", "name": "Bold Signal", "nameZh": "焦点信号", "descriptionZh": "暗渐变底 + 大橙色焦点色卡 + Archivo Black / Space Grotesk 字体。签名：占位主角色卡 + 大编号制表数。适合 pitch deck、产品发布、宣言型章节。", "mood": ["dark", "bold", "signal", "hero", "modern", "pitch"], "bestFor": ["pitch deck / 投资人路演", "产品发布 / 新品宣传", "营销片头 / brand keynote", "大字宣言 / 标题片", "season hero / 主题营销"], "shell": "#0c0c0c", "surface": "#1a1a1a", "text": "#f5f5f5", "accent": "#ff5722"}, {"id": "chalk-garden", "name": "Chalk Garden", "nameZh": "粉笔花园", "descriptionZh": "深色石板底 + Patrick Hand 手写字体 + 粉笔黄强调色. 教室 / 课堂讲解风.", "mood": ["dark", "handwritten", "classroom", "playful", "chalk", "explainer"], "bestFor": ["科普讲解", "教学课堂", "知识分享", "亲切口吻视频", "面向初学者"], "shell": "#1a1a1a", "surface": "#1e1e24", "text": "#f4f4f5", "accent": "#fde047"}, {"id": "creative-voltage", "name": "Creative Voltage", "nameZh": "电压创意", "descriptionZh": "饱和电光蓝底 + 霓虹黄强调 + Syne 几何衬线 / Space Mono 等宽。签名：halftone 网点纹理（复古朋克工作室感）。适合设计周、创意工作室、视觉文化话题。", "mood": ["dark", "creative", "energetic", "retro-modern", "electric", "punk"], "bestFor": ["设计周 / 创意分享", "工作室作品集 / showcase", "视觉文化 / 字体话题", "音乐 / 艺术节预热", "复古朋克 / 街头文化"], "shell": "#001a4d", "surface": "#0033b8", "text": "#ffffff", "accent": "#d4ff00"}, {"id": "dark-botanical", "name": "Dark Botanical", "nameZh": "暗夜植物", "descriptionZh": "高级感暗底 + Cormorant 斜体衬线 + 暖陶 / 玫粉 / 鎏金叠层。签名：柔光晕染 (blurred light pool)。气质介于时尚刊物封面与博物馆图录之间。", "mood": ["dark", "elegant", "editorial", "premium", "sophisticated", "botanical"], "bestFor": ["品牌故事 / 形象片", "时尚 / 美妆", "生活方式 / 旅行", "文化 / 艺术评论", "高端产品发布"], "shell": "#0a0a0a", "surface": "#141312", "text": "#e8e4df", "accent": "#d4a574"}, {"id": "dune", "name": "Dune", "nameZh": "沙丘", "descriptionZh": "炭褐当墨 + 沙底，几乎不用 accent —— 克制、高级。Inter 显示 + Source Serif 正文。像建筑作品集、画廊手册、沙漠黄昏的色温。", "mood": ["light", "dune", "sand", "muted", "architecture", "gallery"], "bestFor": ["建筑 / 室内 / 空间", "艺术展览 / 画廊手册", "设计师 / 工作室作品集", "时尚 / 高端品牌", "审美优先的私享会"], "shell": "#dcc8a5", "surface": "#f0e6d2", "text": "#1f1a14", "accent": "#8c6a48"}, {"id": "electric-studio", "name": "Electric Studio", "nameZh": "电光企业", "descriptionZh": "净白底 + 单一电光蓝 + Manrope 全场。签名：贴底 4px 电蓝色块。企业感、清晰、自信，不冷漠，适合 B2B 与投资人场景。", "mood": ["light", "corporate", "electric", "confident", "enterprise", "clean"], "bestFor": ["B2B 产品演讲", "投资人 / 路演 deck", "企业财报 / 季度更新", "行业研究 / 趋势报告", "企业咨询 / 培训"], "shell": "#0a0a0a", "surface": "#ffffff", "text": "#0a0a0a", "accent": "#4361ee"}, {"id": "forest-ink", "name": "Forest Ink", "nameZh": "森林墨", "descriptionZh": "深森林绿当墨（绿就是字色本身）+ 象牙暖纸。Source Serif 正文 + Playfair Display + Noto Serif SC。像旧版《国家地理》，沉稳、有呼吸感、克制。", "mood": ["light", "forest", "nature", "editorial", "documentary", "warm"], "bestFor": ["自然 / 可持续 / 环保", "户外品牌 / 农业", "纪录 / 非虚构", "文化 / 行业观察", "慢生活 / 文学农庄"], "shell": "#ece7da", "surface": "#f5f1e8", "text": "#1a2e1f", "accent": "#4d7a4d"}, {"id": "indigo-porcelain", "name": "Indigo Porcelain", "nameZh": "靛蓝瓷", "descriptionZh": "深靛蓝当墨（靛蓝就是字色本身，而非 accent）+ 瓷白纸。Playfair Display + Noto Serif SC + IBM Plex Sans。学术、有深度，像蓝印花瓷器或一本当代思想期刊。", "mood": ["light", "indigo", "porcelain", "academic", "editorial", "scholarly"], "bestFor": ["学术 / 研究 / 论文解读", "AI / 数据 / 工程深度", "中国当代文化", "技术发布会 / 严肃汇报", "思想型 / 评论型长文改编"], "shell": "#e4e8ec", "surface": "#f1f3f5", "text": "#0a1f3d", "accent": "#1e3a8a"}, {"id": "kraft-paper", "name": "Kraft Paper", "nameZh": "牛皮纸", "descriptionZh": "深棕当墨 + 牛皮米。像老笔记本或手戳信封：暖、有年代感、手作味。Fraunces + Noto Serif SC + Source Serif 正文 + 紫铜色 accent。", "mood": ["light", "vintage", "literary", "kraft", "hand-craft", "warm"], "bestFor": ["书评 / 文学随笔", "历史 / 怀旧 / 老物", "独立杂志 / zine", "手工艺 / 食物 / 农产品", "慢生活 / 人文"], "shell": "#dccab0", "surface": "#eedfc7", "text": "#2a1e13", "accent": "#a35b2a"}, {"id": "midnight-press", "name": "Midnight Press", "nameZh": "暗色印刷", "descriptionZh": "暖色暗底 + 单一热橙强调色。电影感、终端气质、开发者审美。", "mood": ["dark", "cinematic", "terminal", "developer", "warm"], "bestFor": ["开发者教程", "AI / 工具评测", "极客向产品介绍", "技术 deep dive"], "shell": "#0d0b09", "surface": "#1a1714", "text": "#f5f0e5", "accent": "#ff4a2b"}, {"id": "monochrome-print", "name": "Monochrome Print", "nameZh": "黑白印刷", "descriptionZh": "微暖白底 + 墨黑 serif + 单一墙墨蓝强调色. 高对比印刷杂志气质, Monocle / Wallpaper / MIT Press 那种沉静讲究.", "mood": ["light", "print", "minimal", "serif", "monochrome", "sophisticated"], "bestFor": ["深度阅读改编", "学术 / 思想型内容", "品牌故事", "高级感产品", "文化 / 艺术评论"], "shell": "#f5f3ee", "surface": "#fbfaf6", "text": "#0a0a0a", "accent": "#1d4ed8"}, {"id": "neon-cyber", "name": "Neon Cyber", "nameZh": "霓虹赛博", "descriptionZh": "深海军底 + 电光青 + 玫红双霓虹 + Clash Display / Satoshi 字体。签名：青色发光网格 + 双色霓虹描边。赛博朋克未来派审美。", "mood": ["dark", "cyberpunk", "neon", "futuristic", "technical", "saturated"], "bestFor": ["AI / 大模型评测", "web3 / 区块链", "网络安全 / 黑客向", "未来主义产品", "赛博朋克 / 科幻话题"], "shell": "#04060f", "surface": "#0a0f1c", "text": "#e8f4ff", "accent": "#00ffcc"}, {"id": "newsroom", "name": "Newsroom", "nameZh": "报社", "descriptionZh": "报纸奶油底 + 墨黑 serif + 报头红强调色. 老派大报 / 纪录片气质, 像一篇 NYT 特稿.", "mood": ["light", "newspaper", "editorial", "serif", "documentary", "warm"], "bestFor": ["纪录片 / 报道", "深度评测", "时事评论", "AI 产品分析", "热点解读"], "shell": "#ebe5d6", "surface": "#f4ede0", "text": "#1a1a1a", "accent": "#c9302c"}, {"id": "paper-press", "name": "Paper Press", "nameZh": "亮色印刷", "descriptionZh": "暖色奶油底 + 单一热橙强调色。杂志气质、柔和日间审美。", "mood": ["light", "editorial", "magazine", "warm", "daytime"], "bestFor": ["杂志型内容", "生活方式", "日常工具评测", "温和教程", "面向大众的科技解读"], "shell": "#d8cfb8", "surface": "#efe7d6", "text": "#1a1714", "accent": "#ff4a2b"}, {"id": "pastel-dream", "name": "Pastel Dream", "nameZh": "柔光梦", "descriptionZh": "柔粉蓝灰底 + 奶油卡 + 单一鼠尾草绿强调色 + Plus Jakarta Sans。签名：单边多色 pill 色条。友好但不腻，适合女性向 / 教学 / onboarding。", "mood": ["light", "pastel", "friendly", "soft", "approachable", "warm"], "bestFor": ["产品 onboarding / 教程", "友好教学 / 知识科普", "女性向 / 生活方式", "心理 / 健康 / 母婴", "情绪向品牌片"], "shell": "#c8d9e6", "surface": "#faf9f7", "text": "#1f2429", "accent": "#5a7c6a"}, {"id": "split-canvas", "name": "Split Canvas", "nameZh": "双拼画布", "descriptionZh": "双色画布：暖蜜桃 + 冷薰衣草作为成对底色 + Outfit 几何无衬线 + 玫红强调。签名：双调底色（左桃 / 右紫），适合做对照与对话型章节。", "mood": ["light", "playful", "dual-tone", "friendly", "creative", "warm-cool"], "bestFor": ["双主题对比 / 辩论", "故事讲述 / 对话", "创意分享", "轻量品牌片", "概念对照型科普"], "shell": "#dcc7b8", "surface": "#f5e6dc", "text": "#1a1410", "accent": "#d24a78"}, {"id": "sunset-zine", "name": "Sunset Zine", "nameZh": "日落 Zine", "descriptionZh": "暖蜗色纸底 + 玫红强调色 + 厚体 Fraunces serif. 独立杂志 / 丝网印 zine 风, 俏皮有人情味.", "mood": ["light", "magazine", "zine", "playful", "warm", "expressive"], "bestFor": ["生活向 vlog", "创意分享", "趣味评测", "小红书 / 抖音风", "文化 / 表达型"], "shell": "#f7d8b5", "surface": "#fbe8d3", "text": "#2a1c12", "accent": "#e6386b"}, {"id": "swiss-ikb", "name": "Swiss IKB", "nameZh": "瑞士克莱因蓝", "descriptionZh": "瑞士国际主义风。**极细 200 weight** Inter / Helvetica + 净暖白底 + 克莱因蓝（IKB）单一锚点色。签名：1px 发丝网格 + 200 重字 hero 数字。Massimo Vignelli / Helvetica Forever 那种克制冷静。", "mood": ["light", "swiss", "modernist", "international-style", "grid", "extra-light"], "bestFor": ["AI / 科技产品发布", "年度总结 / 数据汇报", "设计 / 工程领域分享", "严肃学术 / 国际化品牌", "信息驱动设计 / 信息图"], "shell": "#e8e8e6", "surface": "#fafaf8", "text": "#0a0a0a", "accent": "#002fa7"}, {"id": "terminal-green", "name": "Terminal Green", "nameZh": "终端绿", "descriptionZh": "纯黑底 + 磷光绿强调色, 全程等宽字体. Matrix 黑客 / 80 年代终端感, 最适合技术演示与 CLI 教程.", "mood": ["dark", "terminal", "hacker", "monospace", "phosphor", "technical"], "bestFor": ["CLI 工具教程", "黑客 / 安全话题", "技术演示", "命令行实操", "复古技术致敬"], "shell": "#050a05", "surface": "#0a0f0a", "text": "#d3f0d3", "accent": "#00ff88"}, {"id": "vintage-editorial", "name": "Vintage Editorial", "nameZh": "复古编辑", "descriptionZh": "奶油底 + 厚体 Fraunces 斜体 + 暖陶强调色，有性格、会说话。签名：细线几何叠层（圆 + 线 + 点）。介于杂志专栏与艺术评论之间，俏皮、自信、有声音。", "mood": ["light", "vintage", "editorial", "opinionated", "witty", "personality"], "bestFor": ["个人见解 / 评论", "文化随笔 / 美学话题", "有声音的博主", "设计 / 字体话题", "文艺类长文改编"], "shell": "#e8e0cf", "surface": "#f5f3ee", "text": "#1a1a1a", "accent": "#c25e3a"}, {"id": "warm-keynote", "name": "Warm Keynote", "nameZh": "暖色 Keynote", "descriptionZh": "奶油纸底 + 单一青色强调色 + 舞台上的暖色网格. SaaS Keynote 与编辑器气质.", "mood": ["light", "keynote", "editorial", "warm", "spring", "saas"], "bestFor": ["SaaS 产品 keynote", "B 端产品发布", "工具产品讲解", "团队对外汇报"], "shell": "#FDFBF7", "surface": "#FFFFFF", "text": "#43302B", "accent": "#14B8A6"}];
+const GH_RAW = "https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/themes";
+const GH_TREE = "https://github.com/ConardLi/garden-skills/tree/main/skills/web-video-presentation/themes";
+
+function lum(hex){
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex||"");
+  if(!m) return 0.5;
+  const f = c => parseInt(c,16)/255;
+  const [r,g,b] = [f(m[1]),f(m[2]),f(m[3])];
+  return 0.2126*r + 0.7152*g + 0.0722*b;
+}
+function onAccent(a){ return lum(a) > 0.55 ? "#111" : "#fff"; }
+
+function card(t){
+  const ac = onAccent(t.accent);
+  const chips = (arr,cls)=> (arr||[]).map(x=>`<span class="chip">${x}</span>`).join("");
+  return `<div class="card" data-search="${(t.name+' '+t.nameZh+' '+t.id+' '+(t.mood||[]).join(' ')+' '+(t.bestFor||[]).join(' ')).toLowerCase()}">
+    <div class="screen" style="background:${t.shell}">
+      <div class="panel" style="background:${t.surface}">
+        <div class="t" style="color:${t.text}">${t.nameZh||t.name}</div>
+        <div class="b" style="color:${t.text}">${t.descriptionZh||''}</div>
+        <span class="btn" style="background:${t.accent};color:${ac}">开始演示</span>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="ttl"><span class="zh">${t.nameZh||''}</span><span class="en">${t.name||''}</span><span class="id">${t.id}</span></div>
+      <div class="desc">${t.descriptionZh||t.description||''}</div>
+      ${ (t.mood&&t.mood.length)?`<div class="lbl">气质</div><div class="chips">${chips(t.mood)}</div>`:'' }
+      ${ (t.bestFor&&t.bestFor.length)?`<div class="lbl">适合场景</div><div class="chips">${chips(t.bestFor)}</div>`:'' }
+      <div class="dl">
+        <a class="primary" href="${GH_TREE}/${t.id}" target="_blank" rel="noopener">官网主题页</a>
+        <a href="${GH_RAW}/${t.id}/theme.json" target="_blank" rel="noopener">theme.json</a>
+        <a href="${GH_RAW}/${t.id}/tokens.css" target="_blank" rel="noopener">tokens.css</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+const grid = document.getElementById('grid');
+function render(list){
+  grid.innerHTML = list.length ? list.map(card).join('') : '<div class="empty">没有匹配的主题</div>';
+  document.getElementById('shown').textContent = '显示 '+list.length+' / '+THEMES.length;
+}
+document.getElementById('total').textContent = THEMES.length;
+const q = document.getElementById('q');
+q.addEventListener('input', ()=>{
+  const v = q.value.trim().toLowerCase();
+  render(THEMES.filter(t => (t._s||(t._s=(t.name+' '+t.nameZh+' '+t.id+' '+(t.mood||[]).join(' ')+' '+(t.bestFor||[]).join(' ')).toLowerCase())).includes(v)));
+});
+render(THEMES);
+</script>
+</body>
+</html>
