@@ -51,9 +51,13 @@ Then just say: *"Use voice-to-deck, turn this narration into a dynamic deck. MP3
 
 ## What it looks like when it works
 
-Elements land **in order**, not as one block fade. On this page the narration says "it hit three things", so three photos arrive one after another — the number ③ is already on screen while the third photo is still a dashed placeholder:
+Elements land **in order**, not as one block fade. Here is a real 17-second stretch of a "step 2" page:
 
-![Three photos landing in narration order, the third still a placeholder](docs/demo-whyhot.gif)
+![Prompt filled in, sent, three shot cards filled left to right, then a three-item self-check](docs/demo-flow.gif)
+
+What happens in those 17 seconds: empty prompt box → prompt and three tags typed in → the send button → a spinner while waiting → three shot cards fill from left to right, each getting a tail frame and a green tick → a "30-second self-check" at the bottom judges three items one by one, and **the middle one fails** ("regenerate, do not settle").
+
+Nothing appears as one block. Every element arrives, grows, or resolves **in sequence** — that is what "a visible change per beat" means.
 
 ## Three gates before delivery
 
