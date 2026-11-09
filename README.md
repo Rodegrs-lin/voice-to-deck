@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![gates](https://img.shields.io/badge/gates-timeline%20%7C%20clock%20%7C%20motion-2ea44f)](#验证)
 
+[English](README.en.md) · **中文**
+
 > 把一条**完整 MP3** 当作时间轴，做出一套 1920×1080 的动态 PPT 网页：页、拍、进度条全部跟着媒体走。支持两档模式——**静音档**（MP3 只当时钟不出声，录屏后合轨）和**有声档**（出声的那条媒体自己当时钟，双击就有声音）。
 >
 > 核心规则只有一条：**时钟必须等于声源。** 出声的是谁，就用谁的 `currentTime`。音画对不上，十次有九次是这条被违背了。
