@@ -32,19 +32,14 @@
 
 ## 快速开始
 
-```bash
-# 一行装（把 <owner>/<repo> 换成你的 GitHub 仓库，例如 yourname/voice-to-deck）
-npx skills add <owner>/<repo> --skill voice-to-deck
-```
-
-或者手动：把整个 `voice-to-deck/` 目录放进你的 skills 目录
+**拿到 zip 或文件夹（最常见）：** 解压后把整个 `voice-to-deck/` 目录放进 skills 目录，就这样。
 
 ```
 ~/.workbuddy/skills/voice-to-deck/
 ~/.claude/skills/voice-to-deck/
 ```
 
-然后直接说：
+放好之后直接说：
 
 > 用 voice-to-deck，把这条口播做成动态 PPT。MP3 和 SRT 在 xxx。
 
@@ -52,6 +47,12 @@ npx skills add <owner>/<repo> --skill voice-to-deck
 
 ```bash
 node scripts/list-themes.mjs
+```
+
+**如果这个包已经在 GitHub 上**，也可以一行装：
+
+```bash
+npx skills add Rodegrs-lin/voice-to-deck --skill voice-to-deck
 ```
 
 ## 触发方式
