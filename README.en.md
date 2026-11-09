@@ -6,9 +6,9 @@ Give it one voice track plus an SRT and your source material. It builds a 1920×
 
 [中文说明](README.md) · [License: MIT](LICENSE)
 
-![20 seconds from a real deck: numbers counting up, a page turn, then four shots on the next page](docs/demo.gif)
+![24 seconds from a real deck, starting at frame 0: title lands, cards appear one by one, a page turn, then four shots](docs/demo.gif)
 
-*Real footage, 20 seconds, from a 19-page / 385-second project. The clip crosses a page boundary on purpose — that is the only way to see that the page really follows the audio.*
+*Real footage from **second 0**, 24 seconds, out of a 19-page / 385-second project. It starts at zero and crosses a page boundary on purpose — that is the only way to see both how elements grow in and that the page actually follows the audio.*
 
 ## The one rule
 

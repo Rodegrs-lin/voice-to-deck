@@ -12,9 +12,9 @@
 
 装这一个目录就够了。不依赖任何其它 Skill，主题库已内置。
 
-![20 秒实拍：封面页的数字在长、翻页、第二页四个镜头依次展开](docs/demo.gif)
+![24 秒实拍：标题从无到有、卡片依次出现、翻页、第二页四个镜头](docs/demo.gif)
 
-*上面是真实产物的一段 20 秒录屏（19 页 / 385 秒的项目，牛皮纸主题）——**封面 → 翻页 → 第二页**。选跨页的片段，是因为只有跨页才看得出「页是真的跟着音轨换的」，不是示意图。*
+*上面是真实产物**从第 0 秒开始**的 24 秒录屏（19 页 / 385 秒的项目，牛皮纸主题）——标题落笔 → 卡片一张张出现 → 翻页 → 第二页四个分镜镜头。刻意从 0 开始并跨页，因为只有这样才能同时看到「元素怎么长出来」和「页怎么跟着音轨换」。*
 
 ---
 
@@ -215,16 +215,17 @@ node scripts/capture-shots.mjs --url http://127.0.0.1:4321 --timeline timeline.j
 # 截出来是 PNG（约 700KB–1MB），转 WebP 再入库（约 50KB，肉眼无差）
 ffmpeg -y -i docs/01-cover.png -c:v libwebp -quality 82 -compression_level 6 docs/01-cover.webp
 
-# GIF：截 20 秒、8fps、480 宽、96 色，约 600KB
-# 必须跨页，否则看不出翻页；调色板两遍（palettegen + paletteuse）比直接转小 40%
-ffmpeg -y -ss 6 -t 20 -i 成片.mp4 \
-  -vf "fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" \
+# GIF：从 0 秒截 24 秒、7fps、440 宽、96 色，约 750KB
+# 两个关键选择：① 从 0 开始（否则切掉标题从无到有的过程）② 必须跨页（否则看不出翻页）
+# 调色板两遍（palettegen + paletteuse）比直接转小 40%
+ffmpeg -y -ss 0 -t 24 -i 成片.mp4 \
+  -vf "fps=7,scale=440:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" \
   -loop 0 docs/demo.gif
 ```
 
 > 体积取舍是实测的：三张 PNG 共 **2.4MB**，转 WebP 后共 **154KB**（降 94%），1920×1080 的文字和细线依然清晰。仓库里只放 WebP，PNG 转完就删。
 >
-> GIF 则受限于格式本身：24 秒 / 600 宽 / 128 色是 **1.25MB**，压到 20 秒 / 480 宽 / 96 色才落到 **600KB**。再长就要牺牲清晰度了——README 的动图超过 1MB，很多人根本等不到它播。
+> GIF 受格式限制更死：24 秒 / 600 宽 / 128 色是 **1.25MB**，压到 24 秒 / 440 宽 / 7fps 才落到 **750KB**。再长或再清晰就要破 1MB——README 的动图超 1MB，很多人等不到它播。
 
 ## 验证
 
