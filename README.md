@@ -83,13 +83,13 @@ npx skills add Rodegrs-lin/voice-to-deck --skill voice-to-deck
 
 下面三张是真实产物截图（AI 副业项目拆解，19 页 / 385 秒，牛皮纸主题），不是示意图：
 
-![封面页：标题 + 手机界面实物锚点 + 人头阵列 + 数据条](docs/01-cover.png)
+![封面页：标题 + 手机界面实物锚点 + 人头阵列 + 数据条](docs/01-cover.webp)
 
 封面这一页同时满足三件事：有**实物锚点**（左边手机界面是真实截图）、有**量在推移**（30 个人头 = 1 万人，条状图按赞数排）、有**唯一主角**（左下角数字人圆形画中画）。
 
-![流程页](docs/02-steps.png)
+![流程页](docs/02-steps.webp)
 
-![数据页：7 天柱状图，两根标"留下"](docs/03-data.png)
+![数据页：7 天柱状图，两根标"留下"](docs/03-data.webp)
 
 第三张是数据页。柱子在长、标注在落、底部有页内进度线——**画面一直在动，但没有一句话配一个新图案**。这就是这个包和动效片的分界。
 
@@ -208,9 +208,14 @@ README 里那三张图和 `docs/demo.gif` 都是从真实产物截的，脚本�
 # 起服务后按 timeline 每页取 62% 处截图
 node scripts/capture-shots.mjs --url http://127.0.0.1:4321 --timeline timeline.json --out docs --limit 3
 
+# 截出来是 PNG（约 700KB–1MB），转 WebP 再入库（约 50KB，肉眼无差）
+ffmpeg -y -i docs/01-cover.png -c:v libwebp -quality 82 -compression_level 6 docs/01-cover.webp
+
 # GIF 从成片截 6 秒（10fps / 640 宽，约 250KB）
 ffmpeg -y -ss 6 -t 6 -i 成片.mp4 -vf "fps=10,scale=640:-1:flags=lanczos" -loop 0 docs/demo.gif
 ```
+
+> 这一步是实测出来的：三张 PNG 共 **2.4MB**，转 WebP 后共 **154KB**（降 94%），1920×1080 的文字和细线依然清晰。仓库里只放 WebP，PNG 转完就删。
 
 ## 验证
 
