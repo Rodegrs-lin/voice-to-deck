@@ -8,7 +8,13 @@ Give it one voice track plus an SRT and your source material. It builds a 1920×
 
 ![24 seconds from a real deck, starting at frame 0: title lands, cards appear one by one, a page turn, then four shots](docs/demo.gif)
 
-*Real footage from **second 0**, 24 seconds, out of a 19-page / 385-second project. It starts at zero and crosses a page boundary on purpose — that is the only way to see both how elements grow in and that the page actually follows the audio.*
+*Real footage from **second 0**, 24 seconds, out of a 19-page / 385-second project: title lands → cards appear one by one → a page turn → four shots on the next page.*
+
+![17 seconds: prompt filled in, sent, three shot cards filled left to right, then a three-item self-check](docs/demo-flow.gif)
+
+*Another page, 17 seconds: empty prompt box → prompt and three tags typed in → the send button → a spinner → three shot cards fill from left to right, each getting a tail frame and a green tick → a "30-second self-check" judges three items one by one, and **the middle one fails** ("regenerate, do not settle").*
+
+**The first clip shows how the page follows the audio; the second shows how elements grow inside one page.** Both are cut from a real film — not a single frame is redrawn.
 
 ## The one rule
 
@@ -48,16 +54,6 @@ Then just say: *"Use voice-to-deck, turn this narration into a dynamic deck. MP3
 - `timeline.json` (pages / beats / cues), `outline.md`, `visual-direction.md`, `review-report.md` + `review-results.json`
 - 23 bundled themes, each a `theme.json` + `tokens.css`
 - A fixed recording URL and a one-click launcher
-
-## What it looks like when it works
-
-Elements land **in order**, not as one block fade. Here is a real 17-second stretch of a "step 2" page:
-
-![Prompt filled in, sent, three shot cards filled left to right, then a three-item self-check](docs/demo-flow.gif)
-
-What happens in those 17 seconds: empty prompt box → prompt and three tags typed in → the send button → a spinner while waiting → three shot cards fill from left to right, each getting a tail frame and a green tick → a "30-second self-check" at the bottom judges three items one by one, and **the middle one fails** ("regenerate, do not settle").
-
-Nothing appears as one block. Every element arrives, grows, or resolves **in sequence** — that is what "a visible change per beat" means.
 
 ## Three gates before delivery
 
