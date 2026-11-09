@@ -123,7 +123,7 @@ npx skills add Rodegrs-lin/voice-to-deck --skill voice-to-deck
 
 ## 要成片怎么办
 
-本包出网页，**不自己渲染视频**。MP4 交给 `html-to-mp4-recording`——确定性逐帧渲染，不掉帧、可复现。
+本包出网页，**不自己渲染视频**。MP4 交给 [`html-to-mp4-recording`](https://github.com/Rodegrs-lin/html-to-mp4-recording)——确定性逐帧渲染，不掉帧、可复现。
 
 三步：
 
@@ -132,11 +132,13 @@ npx skills add Rodegrs-lin/voice-to-deck --skill voice-to-deck
 3. 交出去：
 
 ```bash
-node <html-to-mp4-recording>/scripts/record_vite.mjs \
+node <你的 html-to-mp4-recording 目录>/scripts/record_vite.mjs \
   --url "http://127.0.0.1:8931/index.html?review=1" \
   --mp3 口播.mp3 --sfx 音效轨.mp3 --sfx-vol 0.9 \
   --out 成片.mp4
 ```
+
+那个目录怎么来：`npx skills add Rodegrs-lin/html-to-mp4-recording`，或者从它的 [GitHub 仓库](https://github.com/Rodegrs-lin/html-to-mp4-recording) 直接下载。
 
 它有两套录制器：`record_page.mjs` 给裸 HTML（有 `SCENES`），**`record_vite.mjs` 给 Vite/React 打包页（认 `__rec`）——本包是后者**，用错会报 `No timed scenes found`。
 

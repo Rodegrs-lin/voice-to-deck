@@ -126,7 +126,7 @@ Browser Review must verify: visible state changes when the clock element's time 
 
 ### Recording handoff (`window.__rec`)
 
-If the deck will later be turned into an MP4, the page must also expose what `html-to-mp4-recording` expects for form B (Vite/React bundle). `renderAt` and `__setT` are the same function:
+If the deck will later be turned into an MP4, the page must also expose what [`html-to-mp4-recording`](https://github.com/Rodegrs-lin/html-to-mp4-recording) expects for form B (Vite/React bundle). `renderAt` and `__setT` are the same function:
 
 ```ts
 if (REVIEW) {

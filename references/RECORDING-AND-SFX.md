@@ -2,7 +2,7 @@
 
 ## 适用范围
 
-本技能产出网页，不自己渲染视频。用户要成片时，把页面交给 `html-to-mp4-recording`；独立音效轨按本文件后半段做。已验收的网页交付物保持不变，源 HTML 不因录制而修改。
+本技能产出网页，不自己渲染视频。用户要成片时，把页面交给 [`html-to-mp4-recording`](https://github.com/Rodegrs-lin/html-to-mp4-recording)；独立音效轨按本文件后半段做。已验收的网页交付物保持不变，源 HTML 不因录制而修改。
 
 ## 录制前置
 

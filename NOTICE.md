@@ -38,6 +38,6 @@ MIT 要求保留版权与许可声明，本包已履行。这批主题**不是**
 
 - 不做 TTS，不调用任何图像生成或语音 API，不需要 API Key
 - 默认不在画面里渲染字幕；要字幕属于显式变更，需记录并重跑验收
-- 不自己渲染 MP4；成片交接给 `html-to-mp4-recording`（页面需在 `?review=1` 下暴露 `window.__rec`）。音效轨见 `references/RECORDING-AND-SFX.md`
+- 不自己渲染 MP4；成片交接给 [`html-to-mp4-recording`](https://github.com/Rodegrs-lin/html-to-mp4-recording)（页面需在 `?review=1` 下暴露 `window.__rec`）。音效轨见 `references/RECORDING-AND-SFX.md`
 - 不做音量滑块、静音按钮这类运行时控件
 - 不修改用户的任何源文件
